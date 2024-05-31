@@ -4,8 +4,8 @@ import { cva } from 'class-variance-authority'
 import { ChevronDown, ExternalLink } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { blogs } from '../../data'
 import { Link } from 'react-router-dom'
+import { blogs } from '../../mock/data/blogs.data'
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,
@@ -150,11 +150,11 @@ export const Navbar = () => {
       <NavigationMenuList className='center shadow-blackA4 text-[#7360BF] m-0 flex list-none rounded-[6px] bg-[#181a1b] p-1 shadow-[0_2px_10px]'>
         <NavigationMenuItem>
           <NavigationMenuTrigger className='text-violet11 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]'>
-            Getting started
+            Featured
           </NavigationMenuTrigger>
           <NavigationMenuContent className='bg-[#181a1b] text-white rounded-lg data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute top-0 left-0 w-full sm:w-auto'>
             <ul className='p-6 md:w-[400px] lg:w-[500px]'>
-              {blogs.slice(3).map((blog) => (
+              {blogs.slice(1).map((blog) => (
                 <ListItem
                   key={blog.title}
                   title={blog.title}
@@ -169,7 +169,7 @@ export const Navbar = () => {
 
         <NavigationMenuItem>
           <NavigationMenuTrigger className='text-violet11 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px]'>
-            Components
+            All time best
           </NavigationMenuTrigger>
           <NavigationMenuContent className='bg-[#181a1b] text-white rounded-lg  absolute top-0 left-0 w-full sm:w-auto'>
             <ul className='grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] '>

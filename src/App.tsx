@@ -1,8 +1,13 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Root } from '@/routes/Root'
 import { useMemo } from 'react'
 import NotFound from './routes/NotFound'
-import { Blog } from './routes/Blog'
+import { BlogPage } from './routes/Blog'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { blogLoader } from './loaders/blog.loader'
+
+const queryClient = new QueryClient()
 
 function App() {
   const router = useMemo(
@@ -14,7 +19,8 @@ function App() {
           children: [
             {
               path: '/:id',
-              element: <Blog />,
+              element: <BlogPage />,
+              loader: (params) => blogLoader(params, queryClient),
             },
           ],
           errorElement: (
@@ -29,9 +35,12 @@ function App() {
     []
   )
   return (
-    <div className='h-screen bg-gradient-to-r from-violet-500 to-fuchsia-500'>
-      <RouterProvider router={router} />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className='h-screen bg-gradient-to-r from-violet-500 to-fuchsia-500'>
+        <RouterProvider router={router} />
+      </div>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   )
 }
 
