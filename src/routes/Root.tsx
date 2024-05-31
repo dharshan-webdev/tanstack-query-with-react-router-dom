@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'
-import { Navbar } from '../components/ui/navigation-menu'
+import { Navbar } from '../components/ui/NavigationMenu'
 
 export const Root = () => {
   return (
